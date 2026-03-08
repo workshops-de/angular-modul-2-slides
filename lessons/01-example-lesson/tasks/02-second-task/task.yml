@@ -1,0 +1,16 @@
+# Task Configuration
+title: 'Second Task - Implementation'
+position: 2
+category: 'Implementation'
+preparation: false
+estimated_time_in_minutes: 20
+always_unlocked: false
+
+# Git Integration
+git_tag_completed: solution-02-second-task
+
+# Note: Markdown content is loaded from separate files:
+# - body.md           -> Main task description
+# - hint.md           -> Hints for solving the task
+# - bonus.md          -> Bonus challenges
+# - trainer_hint.md   -> Notes for trainers (not shown to participants)
