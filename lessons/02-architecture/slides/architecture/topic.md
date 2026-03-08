@@ -84,6 +84,16 @@ src/app/
 </WindowMockup>
 
 ---
+
+<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-h6AKUjxNJ8w7tyRwBKyuy.json"></tldraw>
+
+---
+layout: task
+---
+
+# Project Structure
+
+---
 layout: sub-section
 ---
 
@@ -104,7 +114,7 @@ layout: little-what
 # Smart vs. Dumb Components
 
 - **Smart (Container)**: Handles data, state, side effects; talks to services/facades
-- **Dumb (Presentational)**: Pure UI; receives @Input, emits @Output
+- **Dumb (Presentational)**: Pure UI; receives `input`, emits `output`
 - Design systems and UI libraries typically use dumb components
 
 ---
@@ -117,9 +127,10 @@ layoutClass: gap-x-2
 ::left::
 
 **Data flow:**
+
 - Component (Smart) fetches data via Facade
-- Component passes data to Dumb children via `@Input`
-- Dumb children emit events via `@Output`
+- Component passes data to Dumb children via `input`
+- Dumb children emit events via `output`
 - Smart component handles events and updates state
 
 ::right::
@@ -133,13 +144,17 @@ flowchart TB
     SmartComponent --> Facade
     SmartComponent --> DumbComponent
     Facade --> Service
-    DumbComponent -->|@Output| SmartComponent
+    DumbComponent -->|output| SmartComponent
 ```
 
 ::bottom::
 <Callout type="info">
 Dumb components are easier to test and reuse in design systems
 </Callout>
+
+---
+
+<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-Z191fYHEpzHZWxBJMS4rc.json"></tldraw>
 
 ---
 layout: sub-section
@@ -176,10 +191,14 @@ layout: default
 - CQS: Commands change state, Queries return data
 
 ---
+
+<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-YECbies_Jnf50p9Ds1nTa.json"></tldraw>
+
+---
 layout: sub-section
 ---
 
-# Layering & Abstraktionen
+# Layering & Abstractions
 
 ---
 layout: why
@@ -207,6 +226,7 @@ layoutClass: gap-x-2
 ::left::
 
 **Layer responsibilities:**
+
 - **UI**: Components, templates, presentational logic
 - **Facade**: Orchestrates services, exposes simple API to components
 - **Domain**: Business logic, models
@@ -234,6 +254,10 @@ Components should only talk to Facades, not directly to services
 </Callout>
 
 ---
+
+<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-jQA9kKH_j7IsifeHqVJ-e.json"></tldraw>
+
+---
 layout: sub-section
 ---
 
@@ -257,17 +281,14 @@ layout: little-what
 - [eslint-plugin-boundaries](https://github.com/javierbrea/eslint-plugin-boundaries): ESLint rules for architectural layers
 
 ---
-layout: default
+
+<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-ZOagltEnYMckDqnjuq5YD.json"></tldraw>
+
+---
+layout: task
 ---
 
-# eslint-plugin-boundaries
-
-Define element types and dependency rules. ESLint reports violations at build time.
-
-```ts
-// Example: elements (users, orders) cannot import from each other
-// models can only be imported, not import from views
-```
+# Enforce Module Boundaries
 
 ---
 layout: sub-section
@@ -303,6 +324,10 @@ layout: default
 - Cache HTTP responses and computed values
 
 ---
+
+<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-QEnVijoF_Yc4seJZjG32z.json"></tldraw>
+
+---
 layout: sub-section
 ---
 
@@ -328,6 +353,27 @@ layout: little-what
 - Release strategies
 
 ---
+layout: default
+---
+
+# Promote Artifacts, Don't Rebuild
+
+Build once and promote the same artifact through stages (dev → test → prod).
+
+- **Less build time** — no redundant builds per environment
+- **More predictable deployments** — identical artifact across all stages
+
+---
+
+<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-YQRk8I2X6-z5V3_nLT7An.json"></tldraw>
+
+---
+layout: task
+---
+
+# Runtime Configuration
+
+---
 layout: sub-section
 ---
 
@@ -348,6 +394,69 @@ layout: little-what
 # Architecture Decision Records (ADRs)
 
 Lightweight docs: Context, Decision, Consequences. Store in `docs/adr/` or similar.
+
+---
+layout: two-cols-header
+---
+
+# ADR Template
+
+::left::
+
+- One ADR ≈ one architecturally significant decision
+- ~1–2 pages; written for future readers
+
+::right::
+
+<WindowMockup codeblock title="my-decision-record.md">
+
+```md
+# Title (short noun phrase)
+
+## Status
+
+proposed | accepted | deprecated | superseded
+
+## Context
+
+Forces at play — technological, political, project local
+(value-neutral, no advocacy)
+
+## Decision
+
+"We will …" — full sentences, active voice
+
+## Consequences
+
+Resulting context; positive, negative, neutral
+```
+
+</WindowMockup>
+
+---
+layout: why
+---
+
+# What Happens Without ADRs?
+
+- Confused team — no shared understanding of past choices
+- Knowledge lost — why decisions were made fades over time
+- Impact of decisions unclear — hard to revisit or improve
+- Less motivation to change — rationale invisible, improvement feels risky
+
+---
+layout: default
+---
+
+# Outlook: ADRs + AI
+
+If ADRs are present, architecture documentation (e.g. Arc42) can be generated quickly. AI tools use ADRs as context to draft and refine docs — a strong what-if for documentation automation.
+
+---
+layout: task
+---
+
+# Architecture Decision Record
 
 ---
 layout: sub-section
@@ -396,18 +505,3 @@ layout: two-cols
 - Simple library extraction only
 - Want minimal tooling (Angular + Storybook)
 - Prefer direct Angular updates without Nx indirection
-
----
-layout: task
----
-
-# Restructure the Application
-
-Apply the architecture principles we discussed:
-
-1. Feature-driven structure
-2. `public-api.ts` for shared modules
-3. Boundary checks with eslint-plugin-boundaries
-4. Component → Facade → Services/Store
-
-Complete the task **01-restructure-application** in your code repository.

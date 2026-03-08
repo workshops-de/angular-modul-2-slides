@@ -13,7 +13,7 @@ seoMeta:
 theme: '@workshops.de/slidev-theme'
 addons:
   - window-mockup
-  - tldraw
+  - slidev-addon-tldraw
 ---
 
 ---
