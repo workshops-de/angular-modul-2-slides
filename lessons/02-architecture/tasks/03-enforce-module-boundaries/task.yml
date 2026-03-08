@@ -1,0 +1,10 @@
+# Task Configuration
+title: 'Enforce Module Boundaries'
+position: 3
+category: 'Architecture'
+preparation: false
+estimated_time_in_minutes: 10
+always_unlocked: false
+
+# Git Integration
+git_tag_completed: solve--architecture-enforce-module-boundaries

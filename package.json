@@ -13,7 +13,7 @@
     "@slidev/cli": "^52.9.1",
     "@workshops.de/slidev-theme": "2.1.0",
     "slidev-addon-tldraw": "^0.4.2",
-    "slidev-addon-window-mockup": "0.3.0",
+    "slidev-addon-window-mockup": "^0.3.0",
     "vue": "3.5.29"
   },
   "devDependencies": {

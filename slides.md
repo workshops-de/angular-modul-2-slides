@@ -13,7 +13,7 @@ seoMeta:
 theme: '@workshops.de/slidev-theme'
 addons:
   - window-mockup
-  - slidev-addon-tldraw
+  - tldraw
 ---
 
 ---
@@ -21,5 +21,5 @@ src: ./00-index.md
 ---
 
 ---
-src: ./lessons/01-example-lesson/01-example-lesson.md
+src: ./lessons/02-architecture/02-architecture.md
 ---
