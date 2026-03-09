@@ -1,0 +1,10 @@
+# Task Configuration
+title: Custom Store Feature
+position: 5
+category: 'Signal Store'
+preparation: false
+estimated_time_in_minutes: 15
+always_unlocked: false
+
+# Git Integration
+git_tag_completed: solve--state-management--custom-store-feature

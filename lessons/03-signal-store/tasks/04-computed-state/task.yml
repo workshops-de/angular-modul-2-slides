@@ -1,0 +1,10 @@
+# Task Configuration
+title: Computed State
+position: 4
+category: 'Signal Store'
+preparation: false
+estimated_time_in_minutes: 10
+always_unlocked: false
+
+# Git Integration
+git_tag_completed: solve--state-management--computed-state

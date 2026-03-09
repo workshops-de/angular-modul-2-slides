@@ -1,0 +1,25 @@
+# Lesson configuration for repository import
+# This file defines the lesson metadata that will be synced to the platform
+
+name: Signal Store
+position: 3
+
+# Trainer (use email or slug to match existing trainer)
+trainer: gregor.woiwode@workshops.de
+
+# Code repository (for StackBlitz, diffs, etc.)
+github_code_url: https://github.com/workshops-de/angular-modul-2-code
+git_tag_starting: main
+
+# Presentation type: "google_slides" or "slidev"
+slides_type: slidev
+
+# PDF sync (works for both Google Slides and Slidev)
+pdf_generation_enabled: true
+
+# Playground options
+stackblitz_enabled: true
+codesandbox_enabled: false
+
+# Status
+deprecated: false
