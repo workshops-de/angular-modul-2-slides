@@ -63,23 +63,121 @@ layout: default
 layout: default
 ---
 
-# Example: Feature-based Structure
+# Feature-based Structure
 
-<WindowMockup codeblock title="src/app/" padding="2rem">
-```
+<WindowMockup codeblock title="src/app/">
+```{*|5,9,11}
 src/app/
 ├── users/
-│   ├── user-list.component.ts
-│   ├── user.service.ts
+│   ├── user-list.ts
+│   ├── user-client.ts
 │   └── public-api.ts
 ├── orders/
-│   ├── order-list.component.ts
-│   ├── order.service.ts
+│   ├── order-list.ts
+│   ├── order-client.ts
 │   └── public-api.ts
-├── shared/
-│   ├── ui/
+├── ui/
 │   └── public-api.ts
-└── app.component.ts
+└── app.ts
+```
+</WindowMockup>
+
+---
+layout: little-what
+---
+
+# public-api.ts vs index.ts
+
+**Barrel files** re-export symbols so consumers use a single entry point. Naming matters:
+
+- **`public-api.ts`** — Explicit: only what’s listed is public. Encourages deliberate API surface.
+- **`index.ts`** — Common convention, but tooling and many codebases treat it as “everything from this folder,” which can pull in internals and hide **cyclic dependencies** (hard to debug).
+
+---
+layout: two-cols-header
+---
+
+# Cyclic Dependencies with index.ts
+
+::left::
+
+Barrel files that re-export broadly make it easy to form cycles. Such cycles are often **hard to debug** (opaque build/runtime errors).
+
+::right::
+
+<WindowMockup codeblock title="Import cycle" padding="2rem">
+```mermaid
+flowchart LR
+  A[feature-a]
+  B[feature-b]
+  A -->|"import from b/index"| B
+  B -->|"import from a/index"| A
+```
+</WindowMockup>
+
+::bottom::
+<Callout type="info">
+
+**Cycle:** feature-a → feature-b (barrel) → feature-a. With explicit `public-api.ts` you limit what is re-exported and avoid accidental cycles.
+
+</Callout>
+
+---
+layout: two-cols-header
+---
+
+# public-api.ts + Path Aliases
+
+Consume features only via their public API; path aliases in the root `tsconfig` point to `public-api.ts`.
+
+::right::
+
+**Root `tsconfig.json` (or `tsconfig.app.json`):**
+
+<WindowMockup codeblock title="tsconfig.json" padding="2rem">
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@users": ["src/app/users/public-api.ts"],
+      "@orders": ["src/app/orders/public-api.ts"],
+      "@ui": ["src/app/ui/public-api.ts"]
+    }
+  }
+}
+```
+</WindowMockup>
+
+::left::
+
+- Imports like `import { … } from '@users'` resolve to the public API only.
+- No accidental imports from internal files (e.g. `user-client.ts`).
+- Clear boundaries; tooling (e.g. eslint-plugin-boundaries) can enforce “only import from path aliases.”
+
+---
+layout: default
+---
+
+# Use-Case-based Structure
+
+> Scream-Based Project Structure (Robert C. Martin)
+
+<WindowMockup codeblock title="src/app/">
+```{*|2|3-5|6-12|13,14|*}
+src/app/
+├── users/
+│   ├── data/
+│   │   ├── models/
+│   │   └── user-client.ts
+│   └── features/
+│       ├── display-users/
+│       │   ├── user-card.ts
+│       │   ├── users-grid.ts
+│       │   └── users-list.ts
+│       ├── create-user/
+│       └── promote-user/
+    user-shell.ts
+└── app-shell.ts
 ```
 </WindowMockup>
 
@@ -393,7 +491,7 @@ layout: little-what
 
 # Architecture Decision Records (ADRs)
 
-Lightweight docs: Context, Decision, Consequences. Store in `docs/adr/` or similar.
+Lightweight docs: Context, Decision, Consequences.
 
 ---
 layout: two-cols-header
@@ -404,13 +502,13 @@ layout: two-cols-header
 ::left::
 
 - One ADR ≈ one architecturally significant decision
-- ~1–2 pages; written for future readers
+- written for future readers
 
 ::right::
 
 <WindowMockup codeblock title="my-decision-record.md">
 
-```md
+```md{*|1||3-5|7-10|12-14|16-18|20-23|*}
 # Title (short noun phrase)
 
 ## Status
@@ -422,6 +520,10 @@ proposed | accepted | deprecated | superseded
 Forces at play — technological, political, project local
 (value-neutral, no advocacy)
 
+## Considered Options
+
+1,2,3, ...
+
 ## Decision
 
 "We will …" — full sentences, active voice
@@ -429,6 +531,7 @@ Forces at play — technological, political, project local
 ## Consequences
 
 Resulting context; positive, negative, neutral
+Trade-offs
 ```
 
 </WindowMockup>
