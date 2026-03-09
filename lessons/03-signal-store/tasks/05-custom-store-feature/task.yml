@@ -7,4 +7,4 @@ estimated_time_in_minutes: 15
 always_unlocked: false
 
 # Git Integration
-git_tag_completed: solve--state-management--custom-store-feature
+git_tag_completed: solve--signal-store-custom-store-feature

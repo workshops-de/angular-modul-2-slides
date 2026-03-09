@@ -7,4 +7,4 @@ estimated_time_in_minutes: 5
 always_unlocked: false
 
 # Git Integration
-git_tag_completed: solve--state-management--lifecycle-hooks
+git_tag_completed: solve--signal-store-lifecycle-hooks
