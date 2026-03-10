@@ -1,0 +1,10 @@
+# Task Configuration
+title: Entity Management
+position: 7
+category: 'Signal Store'
+preparation: false
+estimated_time_in_minutes: 15
+always_unlocked: false
+
+# Git Integration
+git_tag_completed: solve--signal-store-entities
