@@ -635,6 +635,64 @@ layout: task
 layout: sub-section
 ---
 
+# Entity Management
+
+---
+layout: little-what
+---
+
+# withEntities and the Entity API
+
+Use `withEntities<T>` from `@ngrx/signals/entities` to manage collections by ID. State becomes `entityIds` and `entityMap`; use `setEntities`, `removeEntity`, and `selectId` to update. See [NgRx Signal Store — Entity Management](https://ngrx.io/guide/signals/signal-store/entity-management) and task **Entity Management**.
+
+---
+layout: two-cols-header
+---
+
+# withEntities, setEntities, removeEntity
+
+::left::
+
+- **withEntities&lt;T&gt;**: Adds `entityIds` and `entityMap`; configure `entity` name and `selectId`
+- **setEntities**: Replace or add entities in one go (e.g. after load)
+- **removeEntity**: Remove by ID (e.g. after delete)
+
+::right::
+
+<WindowMockup codeblock title="plugins/with-books.ts">
+
+```ts{1-4|6-7|9|11|13|*}
+import { withEntities, setEntities, removeEntity } from '@ngrx/signals/entities';
+
+const selectId = (book: Book) => book.isbn;
+
+withEntities<Book>({ entity: 'book', selectId }),
+// In loadBooks success:
+patchState(store, setEntities(books, { selectId }));
+// In removeBook success:
+patchState(store, removeEntity(bookISBN));
+```
+
+</WindowMockup>
+
+---
+layout: default
+---
+
+# Entity signals in the template
+
+After refactoring, use `store.bookEntities()` and `store.bookIds()` (or the names from your `entity` config). Use entity selectors or `getEntity` for lookups by ID.
+
+---
+layout: task
+---
+
+# Entity Management
+
+---
+layout: sub-section
+---
+
 # Events (Redux Architecture)
 
 ---

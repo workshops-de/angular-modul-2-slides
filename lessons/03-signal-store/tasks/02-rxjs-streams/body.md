@@ -8,7 +8,7 @@ Extend the `BookStore` with RxJS-based loading: add `isLoading` state, implement
 
 ---
 
-- **Add `loadBooks` method with `rxMethod`** Import `withMethods`, `rxMethod`, and `patchState` from `@ngrx/signals`. Import `pipe`, `switchMap`, and `tap` (or use `tapResponse` from `@ngrx/operators` for API calls). Extend the store with `withMethods` and implement `loadBooks` that accepts `{ pageSize: number; searchTerm: string }`, manages `isLoading`, and fetches via `BookApiClient.getBooks()`.
+- **Add `loadBooks` method with `rxMethod`** Import `withMethods`, `rxMethod`, and `patchState` from `@ngrx/signals`. Import `pipe`, `switchMap`, use `tapResponse` from `@ngrx/operators` for API calls. Extend the store with `withMethods` and implement `loadBooks` that accepts `{ pageSize: number; searchTerm: string }`, manages `isLoading`, and fetches via `BookApiClient.getBooks()`.
   - Set `isLoading: true` when the request starts
   - Use `switchMap` to call the API
   - On success or error, set `isLoading: false` and update `books` on success
