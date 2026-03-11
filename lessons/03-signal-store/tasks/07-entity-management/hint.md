@@ -46,7 +46,3 @@ withMethods((store, router = inject(Router), bookApiClient = inject(BookApiClien
   ),
 })),
 ```
-
-## Using entity signals in the template
-
-After refactoring, access entities via `bookEntities()` and `bookIds()` signals. Use `getEntity` or entity selectors for lookups.
