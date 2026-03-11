@@ -7,8 +7,7 @@ import { withEntities, setEntities, removeEntity } from '@ngrx/signals/entities'
 
 const selectId = (book: Book) => book.isbn;
 
-// In signalStoreFeature:
-withEntities<Book>({ entity: 'book', selectId }),
+withEntities<Book>(),
 ```
 
 See [NgRx Signal Store — Entity Management](https://ngrx.io/guide/signals/signal-store/entity-management).
