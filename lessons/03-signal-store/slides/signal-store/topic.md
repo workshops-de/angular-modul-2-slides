@@ -720,7 +720,7 @@ layout: two-cols-header
 ::left::
 
 - Import `eventGroup` and `type`
-- Events: `queryChanged`, `loadedSuccess`, `loadedFailure`
+- Events: `searchQueryUpdated`, `searchSucceeded`, `searchFailed`
 - Typed payloads for type-safe dispatching
 
 ::right::
@@ -734,9 +734,9 @@ import { eventGroup } from '@ngrx/signals/events';
 export const bookSearchEvents = eventGroup({
   source: 'Book Search',
   events: {
-    queryChanged: type<{ query: string }>(),
-    loadedSuccess: type<Book[]>(),
-    loadedFailure: type<string>(),
+    searchQueryUpdated: type<{ query: string }>(),
+    searchSucceeded: type<Book[]>(),
+    searchFailed: type<string>(),
   },
 });
 ```
@@ -760,9 +760,9 @@ layout: two-cols-header
 
 ```ts{*|1|2|*}
 withReducer(
-  on(queryChanged, () => ({ isLoading: true })),
-  on(loadedSuccess, ({ payload: books }) => ({ books, isLoading: false })),
-  on(loadedFailure, () => ({ isLoading: false }))
+  on(searchQueryUpdated, () => ({ isLoading: true })),
+  on(searchSucceeded, ({ payload: books }) => ({ books, isLoading: false })),
+  on(searchFailed, () => ({ isLoading: false }))
 );
 ```
 
@@ -789,13 +789,13 @@ import { Events, withEventHandlers } from '@ngrx/signals/events';
 import { mapResponse } from '@ngrx/operators';
 
 withEventHandlers((store, events = inject(Events), ...) => ({
-  loadBooks$: events.on(queryChanged).pipe(
+  loadBooks$: events.on(searchQueryUpdated).pipe(
     debounceTime(300),
     switchMap(({ payload }) =>
       client.getBooks(10, payload.query).pipe(
         mapResponse({
-          next: books => loadedSuccess(books),
-          error: err => loadedFailure(err.message),
+          next: books => searchSucceeded(books),
+          error: err => searchFailed(err.message),
         })
       )
     ),
@@ -814,7 +814,7 @@ layout: two-cols-header
 ::left::
 
 - Use `injectDispatch` to get the dispatcher
-- On input or debounced control: `dispatch.queryChanged({ query })`
+- On input or debounced control: `dispatch.searchQueryUpdated({ query })`
 
 ::right::
 
@@ -826,7 +826,7 @@ import { injectDispatch } from '@ngrx/signals/events';
 private readonly dispatch = injectDispatch(bookSearchEvents);
 
 onSearchInput(query: string) {
-  this.dispatch.queryChanged({ query });
+  this.dispatch.searchQueryUpdated({ query });
 }
 ```
 
