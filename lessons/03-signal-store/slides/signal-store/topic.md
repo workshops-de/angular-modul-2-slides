@@ -720,22 +720,23 @@ layout: two-cols-header
 ::left::
 
 - Import `eventGroup` and `type`
-- Events: `searchQueryUpdated`, `searchSucceeded`, `searchFailed`
+- Events: `searchQueryUpdated`, `searchMatched`, `searchDidNotMatch`, `searchFailed`
 - Typed payloads for type-safe dispatching
 
 ::right::
 
 <WindowMockup codeblock title="book-search.events.ts">
 
-```ts{1-5|7-11|13|*}
-import { type } from '@ngrx/signals';
+```ts{*|1,4|5|6.10,8|9|*}
 import { eventGroup } from '@ngrx/signals/events';
+import { type } from '@ngrx/signals';
 
 export const bookSearchEvents = eventGroup({
   source: 'Book Search',
   events: {
     searchQueryUpdated: type<{ query: string }>(),
-    searchSucceeded: type<Book[]>(),
+    searchMatched: type<Book[]>(),
+    searchDidNotMatch: type<void>(),
     searchFailed: type<string>(),
   },
 });
@@ -761,7 +762,7 @@ layout: two-cols-header
 ```ts{*|1|2|*}
 withReducer(
   on(searchQueryUpdated, () => ({ isLoading: true })),
-  on(searchSucceeded, ({ payload: books }) => ({ books, isLoading: false })),
+  on(searchMatched, ({ payload: books }) => ({ books, isLoading: false })),
   on(searchFailed, () => ({ isLoading: false }))
 );
 ```
@@ -794,7 +795,7 @@ withEventHandlers((store, events = inject(Events), ...) => ({
     switchMap(({ payload }) =>
       client.getBooks(10, payload.query).pipe(
         mapResponse({
-          next: books => searchSucceeded(books),
+          next: books => searchMatched(books),
           error: err => searchFailed(err.message),
         })
       )
