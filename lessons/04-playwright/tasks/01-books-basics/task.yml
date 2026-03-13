@@ -1,0 +1,15 @@
+# Task Configuration
+title: 'Playwright: Books list basics'
+position: 1
+category: 'Playwright'
+preparation: false
+estimated_time_in_minutes: 15
+always_unlocked: true
+
+# Git Integration
+git_tag_completed: solution-04-playwright-01-books-basics
+
+# Note: Markdown content is loaded from separate files:
+# - body.md           -> Main task description
+# - hint.md           -> Hints for solving the task
+# - trainer_hint.md   -> Notes for trainers (not shown to participants)

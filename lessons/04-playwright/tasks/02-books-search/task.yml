@@ -1,0 +1,10 @@
+# Task Configuration
+title: 'Playwright: Search & clear books'
+position: 2
+category: 'Playwright'
+preparation: false
+estimated_time_in_minutes: 20
+always_unlocked: true
+
+# Git Integration
+git_tag_completed: solution-04-playwright-02-books-search

@@ -1,0 +1,10 @@
+# Task Configuration
+title: 'Playwright: Create & delete a book'
+position: 3
+category: 'Playwright'
+preparation: false
+estimated_time_in_minutes: 25
+always_unlocked: true
+
+# Git Integration
+git_tag_completed: solution-04-playwright-03-books-create-delete
