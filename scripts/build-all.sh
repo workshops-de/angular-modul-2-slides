@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -49,7 +50,12 @@ build_slide() {
     echo "   ➤ out : $OUT"
 
     # Build from project root with full path
-    npm exec -- slidev build "$FILE" --base "$FULL_BASE" --out "$OUT"
+    if npm exec -- slidev build "$FILE" --base "$FULL_BASE" --out "$OUT"; then
+      echo -e "   ${GREEN}✓${RESET} Build successful"
+    else
+      echo -e "   ${RED}✗${RESET} Build failed"
+      exit 1
+    fi
 
     echo ""
   else
@@ -71,12 +77,11 @@ export_pdf() {
     echo "   ➤ output: $PDF_OUTPUT"
 
     # Export to PDF using Slidev (into dist folder alongside HTML)
-    npm exec -- slidev export "$FILE" --output "$PDF_OUTPUT" --timeout 60000
-
-    if [[ -f "$PDF_OUTPUT" ]]; then
+    if npm exec -- slidev export "$FILE" --output "$PDF_OUTPUT" --timeout 60000; then
       echo -e "   ${GREEN}✓${RESET} PDF exported successfully"
     else
-      echo -e "   ${YELLOW}⚠${RESET} PDF export failed (Playwright may not be installed)"
+      echo -e "   ${RED}✗${RESET} PDF export failed"
+      exit 1
     fi
 
     echo ""
