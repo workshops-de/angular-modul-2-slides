@@ -77,7 +77,7 @@ export_pdf() {
     echo "   ➤ output: $PDF_OUTPUT"
 
     # Export to PDF using Slidev (into dist folder alongside HTML)
-    if npm exec -- slidev export "$FILE" --output "$PDF_OUTPUT" --timeout 60000; then
+    if npm exec -- slidev export "$FILE" --output "$PDF_OUTPUT" --timeout 120000 --wait 5000; then
       echo -e "   ${GREEN}✓${RESET} PDF exported successfully"
     else
       echo -e "   ${RED}✗${RESET} PDF export failed"
