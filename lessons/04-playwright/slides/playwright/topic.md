@@ -1,12 +1,4 @@
 ---
-layout: cover
----
-
-# Playwright – independent & reliable UI testing
-
-Fast, reliable, developer‑friendly end‑to‑end UI tests across browsers.
-
----
 layout: section
 ---
 
@@ -459,7 +451,7 @@ layout: two-cols-header
 
 <WindowMockup codeblock title="tests/books-basic.spec.ts">
 
-```ts{*|5-9|11-16|*}
+```ts {*|5-9|11-16|*}
 import { test, expect } from '@playwright/test';
 
 test('zeigt mindestens ein Buch an', async ({ page }) => {
@@ -497,16 +489,14 @@ layout: two-cols-header
 
 <WindowMockup codeblock title="tests/books-codegen.spec.ts">
 
-```ts{*|3-8|10-14|*}
+```ts {*|3-8|10-14|*}
 import { test, expect } from '@playwright/test';
 
 test('öffnet Bücherliste (Codegen)', async ({ page }) => {
   await page.goto('http://localhost:4200/');
   await page.getByRole('link', { name: 'Bücher' }).click();
 
-  await expect(
-    page.getByRole('heading', { name: 'Bücher' })
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Bücher' })).toBeVisible();
 });
 ```
 
@@ -534,7 +524,7 @@ layout: two-cols-header
 
 <WindowMockup codeblock title="tests/books-search.spec.ts">
 
-```ts{*|5-8|10-17|*}
+```ts {*|5-8|10-17|*}
 import { test, expect } from '@playwright/test';
 
 test('Suchergebnis für ein Buch', async ({ page }) => {
@@ -543,9 +533,7 @@ test('Suchergebnis für ein Buch', async ({ page }) => {
   await page.getByPlaceholder('Suche').fill('Clean Code');
   await page.getByRole('button', { name: 'Suchen' }).click();
 
-  const result = page
-    .getByTestId('book-item')
-    .filter({ hasText: 'Clean Code' });
+  const result = page.getByTestId('book-item').filter({ hasText: 'Clean Code' });
 
   await expect(result).toHaveCount(1);
   await expect(result).toBeVisible();
@@ -583,7 +571,7 @@ layout: two-cols
 
 <WindowMockup codeblock title="tests/books-retries.spec.ts">
 
-```ts{*|3-5|7-15|*}
+```ts {*|3-5|7-15|*}
 import { test, expect } from '@playwright/test';
 
 test.describe('Books (kritische Flows)', () => {
@@ -647,7 +635,7 @@ layout: two-cols-header
 
 <WindowMockup codeblock title="tests/pom/BooksPage.ts">
 
-```ts{*|5-10|12-18|20-25|*}
+```ts {*|5-10|12-18|20-25|*}
 import { type Page, expect } from '@playwright/test';
 
 export class BooksPage {
@@ -690,7 +678,7 @@ layout: two-cols-header
 
 <WindowMockup codeblock title="tests/books-pom.spec.ts">
 
-```ts{*|3|5-11|*}
+```ts {*|3|5-11|*}
 import { test } from '@playwright/test';
 import { BooksPage } from './pom/BooksPage';
 
@@ -724,7 +712,7 @@ layout: two-cols-header
 
 <WindowMockup codeblock title="tests/books-api.spec.ts">
 
-```ts{*|5-10|12-18|*}
+```ts {*|5-10|12-18|*}
 import { test, expect } from '@playwright/test';
 
 test('legt Buch per API an und prüft UI', async ({ page, request }) => {
@@ -735,9 +723,7 @@ test('legt Buch per API an und prüft UI', async ({ page, request }) => {
 
   await page.goto('http://localhost:4200/books');
 
-  await expect(
-    page.getByTestId('book-item').filter({ hasText: 'Clean Code' })
-  ).toHaveCount(1);
+  await expect(page.getByTestId('book-item').filter({ hasText: 'Clean Code' })).toHaveCount(1);
 });
 ```
 
@@ -760,16 +746,14 @@ layout: two-cols-header
 
 <WindowMockup codeblock title="tests/books-a11y.spec.ts">
 
-```ts{*|3-4|6-13|*}
+```ts {*|3-4|6-13|*}
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 test('Books-Seite hat keine offensichtlichen A11y-Probleme', async ({ page }) => {
   await page.goto('http://localhost:4200/books');
 
-  const results = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa'])
-    .analyze();
+  const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
 
   expect(results.violations).toEqual([]);
 });
@@ -802,7 +786,7 @@ layout: two-cols
 
 <WindowMockup codeblock title="playwright.config.ts">
 
-```ts{*|3-7|*}
+```ts {*|3-7|*}
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
@@ -849,14 +833,4 @@ CMD ["npx", "playwright", "test"]
 layout: task
 ---
 
-# Hands-on: Bücher mit Playwright testen
-
-- **1. Ensure at least one book in list**
-  - Navigiere zur Bücher‑Seite der Workshop‑App.
-  - Schreibe einen Test (gern mit POM), der sicherstellt, dass mindestens ein `book-item` vorhanden ist.
-- **2. Search book and verify search result**
-  - 2.1 Suche nach einem existierenden Buch (z.B. „Clean Code“) und verifiziere, dass das Suchergebnis dieses Buch (oder den erwarteten Treffer) enthält.
-  - 2.2 Leere die Suche (Eingabe löschen oder „Zurücksetzen“) und stelle sicher, dass die Ergebnisliste leer ist bzw. den definierten „Keine Ergebnisse“‑Zustand zeigt.
-- **3. Create new book and ensure book in list, delete book afterwards**
-  - Lege über die UI ein neues Buch an und verifiziere, dass es in der Liste erscheint.
-  - Lösche dieses Buch anschließend wieder und prüfe, dass es nicht mehr angezeigt wird, damit dein Testdaten‑Zustand sauber bleibt.
+# Playwright
