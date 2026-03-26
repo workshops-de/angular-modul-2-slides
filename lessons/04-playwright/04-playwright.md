@@ -10,6 +10,8 @@ transition: slide-left
 mdc: true
 seoMeta:
   ogImage: auto
+export:
+  timeout: 120000
 
 # Build configuration
 base: /04-playwright/
