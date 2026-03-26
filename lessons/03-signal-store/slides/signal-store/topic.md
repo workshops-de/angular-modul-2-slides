@@ -727,7 +727,7 @@ layout: two-cols-header
 
 <WindowMockup codeblock title="book-search.events.ts">
 
-```ts{*|1,4|5|6.10,8|9|*}
+```ts{*|1,4|5|6-10,8|9|*}
 import { eventGroup } from '@ngrx/signals/events';
 import { type } from '@ngrx/signals';
 
