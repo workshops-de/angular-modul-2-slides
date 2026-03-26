@@ -212,7 +212,7 @@ flowchart LR
   POM --> Browser[Real browser]
   Browser --> WebApp[Books web app]
   WebApp --> API[Backend API]
-  Tests --> CI[CI pipeline (retries, sharding, Docker)]
+  Tests --> CI["CI pipeline (retries, sharding, Docker)"]
   CI --> Report[Test reports & artifacts]
 ```
 
