@@ -49,7 +49,7 @@ build_slide() {
     echo "   ➤ out : $OUT"
 
     # Build from project root with full path
-    npm exec -- slidev build "$FILE" --base "$FULL_BASE" --out "$OUT" --emptyOutDir
+    npm exec -- slidev build "$FILE" --base "$FULL_BASE" --out "$OUT"
 
     echo ""
   else
