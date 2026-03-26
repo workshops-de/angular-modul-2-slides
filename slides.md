@@ -25,7 +25,7 @@ src: ./lessons/02-architecture/02-architecture.md
 ---
 
 ---
-src: ./lessons/03-signal-store/03-state-management.md
+src: ./lessons/03-signal-store/03-signal-store.md
 ---
 
 ---
