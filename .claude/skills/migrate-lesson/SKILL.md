@@ -24,6 +24,7 @@ Before selecting content:
 - Read `README.md` for project structure and conventions
 - Analyse `lessons/01-example-lesson` (and optionally `lessons/02-rules-and-instructions`) for reference
 - Understand lesson structure: `lesson.yml`, main `.md` entry, `slides/{topic}/`, `tasks/{task}/`
+- **Naming convention**: the lesson directory and its main `.md` file must share the same name — e.g. `lessons/03-signal-store/03-signal-store.md`
 - Note supported layouts: `section`, `sub-section`, `why`, `cover`, `what-if`, `little-what`, `two-cols-header`, `default`
 - Note components:
   - `<Callout type="info">[content]</Callout>` — types: `info` | `warning` | `important`

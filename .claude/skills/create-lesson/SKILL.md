@@ -51,6 +51,17 @@ Ask in this order, one block at a time:
 
 After the interview, compile the trainer's answers into a structured section outline. See [examples.md](examples.md) for the exact output template.
 
+## Naming Convention
+
+The lesson directory and its main `.md` entry file **must share the same name**:
+
+```
+lessons/03-signal-store/
+└── 03-signal-store.md   ← same name as the directory
+```
+
+Always follow the pattern `lessons/<id>-<slug>/<id>-<slug>.md`.
+
 ## Code Examples
 
 - Study and adopt examples in `./assets/window-mockup-example.md` to create code examples
