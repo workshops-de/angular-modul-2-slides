@@ -37,14 +37,16 @@ Every section outline must include content for:
 Ask in this order, one block at a time:
 
 1. **Section title** — "What is the exact title of this section?"
-2. *Sources** - Aks for useful web-sources that you can use for the research.
+2. \*Sources\*\* - Aks for useful web-sources that you can use for the research.
 3. **Why** — "Why does this topic matter? What concrete problem does it address?" + "What should learners feel or understand after the 'why' slide?"
 4. **Little-what** — "In one or two sentences, what _is_ this topic?"
 5. **Main content** — "What are 2–4 main points or steps?" + "Do you have a code/config example? Which layout fits best?" + "Any before/after comparison?"
 6. **Visual** — "What one diagram or image would help? Describe it briefly."
 7. **Architectural content** Aks to create a diagram with Mermaid-Syntax if the content is about architecture
-  - Ask for the direction of the diagram (top-down, left-to-right)
-  - Ask for the layout of the respective slide (default: tow-cols-header, the diagram on the right)
+
+- Ask for the direction of the diagram (top-down, left-to-right)
+- Ask for the layout of the respective slide (default: tow-cols-header, the diagram on the right)
+
 8. **Task & wrap-up** _(optional)_ — task exercise, what-if extension, ask-me-anything prompt.
 
 ## Output
@@ -61,6 +63,18 @@ lessons/03-signal-store/
 ```
 
 Always follow the pattern `lessons/<id>-<slug>/<id>-<slug>.md`.
+
+## Mermaid Diagrams
+
+When writing Mermaid diagrams, follow these rules to avoid parse errors:
+
+- **Always quote node labels that contain parentheses, commas, or special characters:**
+  ```
+  A["CI pipeline (retries, sharding)"]   ✓
+  A[CI pipeline (retries, sharding)]     ✗ — breaks the parser
+  ```
+- Keep node IDs short and alphanumeric (e.g. `Dev`, `CI`, `POM`)
+- Test mentally: if the label contains `(`, `)`, `,`, `/`, or `&` → wrap in `"`
 
 ## Code Examples
 

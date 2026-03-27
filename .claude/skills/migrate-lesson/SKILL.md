@@ -74,6 +74,15 @@ Use `sub-section` for nested content areas when needed.
 
 For a full slide example, see [examples.md](examples.md).
 
+### Mermaid diagram rules
+
+- **Quote any node label that contains parentheses, commas, or special characters:**
+  ```
+  A["CI pipeline (retries, sharding)"]   ✓
+  A[CI pipeline (retries, sharding)]     ✗ — breaks the parser
+  ```
+- Characters that require quoting: `(`, `)`, `,`, `/`, `&`
+
 ---
 
 ## Additional Resources
