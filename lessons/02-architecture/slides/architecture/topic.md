@@ -50,7 +50,9 @@ layout: little-what
 Feature-based (by domain) vs. layer-based (components/services/models). Monorepo vs multi-repo. Libraries and shared modules. Microfrontends.
 
 ---
-layout: default
+layout: image-right
+image: ./lessons/02-architecture/slides/architecture/assets/feature-vs-layer-based.png
+backgroundSize: contain
 ---
 
 # Feature-based vs. Layer-based
@@ -60,10 +62,13 @@ layout: default
 - **Screaming Architecture**: Structure should "scream" the application's purpose
 
 ---
-layout: default
+layout: two-cols-header
+layoutClass: gap-x-sm
 ---
 
 # Feature-based Structure
+
+::left::
 
 <WindowMockup codeblock title="src/app/">
 ```{*|5,9,11}
@@ -81,6 +86,12 @@ src/app/
 └── app.ts
 ```
 </WindowMockup>
+
+::right::
+
+<Callout type="info">
+  All code that belongs feature lives in the corresponding directory.
+</Callout>
 
 ---
 layout: little-what
@@ -289,8 +300,10 @@ layout: default
 - CQS: Commands change state, Queries return data
 
 ---
+layout: center
+---
 
-<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-YECbies_Jnf50p9Ds1nTa.json"></tldraw>
+![Types of UI State](./assets/types-of-ui-state.png)
 
 ---
 layout: sub-section
@@ -346,14 +359,11 @@ flowchart TB
     Facade --> UI
 ```
 
-::bottom::
-<Callout type="info">
-Components should only talk to Facades, not directly to services
-</Callout>
-
+---
+layout: center
 ---
 
-<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-jQA9kKH_j7IsifeHqVJ-e.json"></tldraw>
+![Facade Pattern in Angular Architecture](./assets/facade-pattern-angular-architecture.png)
 
 ---
 layout: sub-section
@@ -379,8 +389,10 @@ layout: little-what
 - [eslint-plugin-boundaries](https://github.com/javierbrea/eslint-plugin-boundaries): ESLint rules for architectural layers
 
 ---
+layout: center
+---
 
-<tldraw class="inset-0 w-full h-full" doc="tldraw/doc-ZOagltEnYMckDqnjuq5YD.json"></tldraw>
+![Enforcing Module Boundaries in Angular Applications](./assets/enforcing-module-boundaries.png)
 
 ---
 layout: task

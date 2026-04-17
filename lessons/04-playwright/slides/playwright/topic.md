@@ -611,7 +611,7 @@ layout: image-right
 
 ::right::
 
-> Platzhalter für drei Debugging‑Screenshots (IDE + Test Explorer + Fehlermeldung).
+![Debugging mit VS Code und Playwright](./assets/debugging-vscode-playwright.png)
 
 ---
 layout: sub-section
