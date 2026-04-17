@@ -577,6 +577,52 @@ layout: task
 layout: sub-section
 ---
 
+# Nx in a nutshell
+
+---
+layout: why
+---
+
+# Why Nx Matters
+
+Nx is a platform for scaling development performance and helping teams ship faster.
+
+- Faster CI feedback with affected runs and caching
+- Consistent tooling across teams and projects
+- Better visibility into dependencies and architecture
+- Worth evaluating when your product and team grow
+
+---
+layout: little-what
+---
+
+# What Is Nx?
+
+Nx optimizes your builds, scales your CI, and helps recover quickly from failed PRs. It adds project intelligence and task orchestration on top of Angular tooling.
+
+---
+layout: two-cols-header
+layoutClass: gap-x-sm
+---
+
+# Core Building Blocks in Nx
+
+::left::
+
+- **Projects** organize apps and libraries in one workspace.
+- **Targets (tasks)** are runnable actions like `build`, `test`, `lint`, `e2e`.
+- **Executors** define how tasks run (often wrapping framework tooling).
+- **Generators** scaffold code and enforce team conventions.
+- **Project graph** shows dependencies and powers affected-only execution.
+
+::right::
+
+![Nx Workspace Dependency Graph](./assets/nx-dependency-graph.png)
+
+---
+layout: sub-section
+---
+
 # When to Use Nx — When Not
 
 ---
